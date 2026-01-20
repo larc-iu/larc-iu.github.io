@@ -3,7 +3,7 @@
 :modified: 2026-01-20
 :summary: Luke Gessler
 
-We are the the **L**inguistic **A**lgorithms, **R**esources, and **C**onservation group at Indiana University Bloomington's Department of Linguistics, led by https://lgessler.com[Prof. Luke Gessler].
+We are the **L**inguistic **A**lgorithms, **R**esources, and **C**onservation group at Indiana University Bloomington's Department of Linguistics, led by https://lgessler.com[Prof. Luke Gessler].
 
 We are united by our interest in algorithms and resources for computationally processing what are often called _low-resource_ or _endangered_ languages.
 
