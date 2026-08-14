@@ -57,6 +57,9 @@ PLUGINS = [
 # people.yaml -- there is no second list of names to keep in sync.
 PUBLICATIONS_BIB = 'static/publications.bib'
 HIGHLIGHT_AUTHORS_FROM_YAML = 'people'
+# Show work from 2024 onward. Earlier entries stay in the .bib rather than
+# being deleted, so moving or lifting the cutoff later is a one-line change.
+PUBLICATIONS_MIN_YEAR = 2024
 
 # Turn off default templates (including index)
 DIRECT_TEMPLATES = []
