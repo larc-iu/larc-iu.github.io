@@ -22,7 +22,14 @@ body {
   flex-direction: column;
 }
 
+/* body is a column flexbox, and a flex item with an auto cross-axis margin
+   opts out of stretching -- so without an explicit width this box shrinks to
+   fit its contents. Pages with a paragraph of prose hide that, but one with a
+   single short line (an empty news page, say) collapses to the width of the
+   text and floats in the middle of the screen. */
 .container {
+  box-sizing: border-box;
+  width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 20px;
@@ -170,35 +177,258 @@ ol p {
   margin-top: unset;
 }
 
-/* Bibliography styles */
-.bibliography {
-  margin-top: 1em;
-  margin-bottom: 2em;
+/* Page headings */
+.page-title {
+  margin-bottom: 0.6em;
 }
 
-.bibliography ul {
-  list-style-type: none;
+/* Home page sections */
+.home-section {
+  margin-top: 40px;
+}
+
+.home-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.home-more {
+  font-size: 0.95rem;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+/* News lists, on both the home page and the news page */
+.post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 20px;
+}
+
+.post-card {
+  border-left: 3px solid #eee;
+  padding-left: 16px;
+  transition: border-color 0.2s ease;
+}
+
+.post-card:hover {
+  border-left-color: var(--link-color);
+}
+
+.post-card-meta {
+  margin: 0 0 4px;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #777;
+}
+
+.post-card-title {
+  margin: 0 0 6px;
+  padding: 0;
+  border: none;
+  font-size: 1.25rem;
+}
+
+.post-card-summary {
+  margin: 0;
+  color: #555;
+}
+
+/* A single news post */
+.post-back {
+  margin-bottom: 0;
+  font-size: 0.9rem;
+}
+
+.post-meta {
+  margin-top: -0.4em;
+  color: #777;
+  font-size: 0.9rem;
+}
+
+.post-body {
+  margin-top: 20px;
+}
+
+/* People */
+.people-heading {
+  margin-top: 36px;
+}
+
+.people-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 26px;
+  margin-top: 20px;
+}
+
+.person-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.person-photo {
+  flex: 0 0 72px;
+}
+
+.person-image,
+.person-placeholder {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: block;
+}
+
+.person-image {
+  object-fit: cover;
+}
+
+.person-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #eef2f6;
+  color: #5b7899;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.person-name {
+  margin: 0 0 2px;
+  font-size: 1.05rem;
+}
+
+.person-title {
+  margin: 0 0 2px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.person-interests {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #777;
+}
+
+/* Projects */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.project-card {
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 18px 20px;
+}
+
+.project-name {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 0 8px;
+  padding: 0;
+  border: none;
+  font-size: 1.2rem;
+}
+
+.project-status {
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.status-active {
+  background-color: #e5f2e8;
+  color: #2c6b3f;
+}
+
+.status-maintained {
+  background-color: #eaf0f7;
+  color: #2f5d8c;
+}
+
+.status-archived {
+  background-color: #f0f0f0;
+  color: #666;
+}
+
+.project-summary {
+  margin: 0 0 10px;
+}
+
+.project-people {
+  margin: 0 0 10px;
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.project-links a {
+  margin-right: 14px;
+  font-size: 0.9rem;
+}
+
+/* Publications */
+.pub-year {
+  margin-top: 32px;
+}
+
+.pub-year-heading {
+  font-size: 1.4rem;
+}
+
+.pub-list {
+  list-style: none;
+  margin: 16px 0 0;
   padding-left: 0;
 }
 
-.bibliography li {
-  margin-bottom: 16px;
-  padding-left: 20px;
-  text-indent: -20px;
+.pub {
+  margin-bottom: 22px;
+  padding-left: 16px;
+  border-left: 3px solid #eee;
 }
 
-.bibliography a {
-  color: var(--link-color);
-  text-decoration: none;
+.pub-title {
+  margin-bottom: 3px;
+  font-size: 1.05rem;
+  font-weight: 500;
 }
 
-.bibliography a:hover, .bibliography a:focus {
-  color: var(--link-hover-color);
-  text-decoration: underline;
+.pub-authors {
+  margin-bottom: 2px;
+  font-size: 0.92rem;
+  color: #555;
 }
 
-.bibliography em {
-  font-style: italic;
+.pub-author-highlight {
+  font-weight: 700;
+  color: var(--main-text-color);
+}
+
+.pub-venue {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.pub-links {
+  margin-top: 5px;
+}
+
+.pub-links a {
+  margin-right: 12px;
+  font-size: 0.85rem;
 }
 
 /* Footer */
@@ -269,13 +499,6 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-}
-
-.container {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 20px;
-  flex: 1 0 auto;
 }
 
 footer {

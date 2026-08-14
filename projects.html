@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Projects &middot; LARC</title>
+    
+    <!-- Meta information -->
+    <meta name="author" content="LARC Group">
+    <meta name="description" content="Software, datasets, and resources built by the LARC group">
+   
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="./theme/css/style.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-brand">
+                    <h1><a href="./"><img src="./static/larc.png" alt="Logo" class="site-logo"> LARC</a></h1>
+                </div>
+                <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./people.html">People</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="./projects.html">Projects</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./publications.html">Publications</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./news.html">News</a>
+                        </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div id="content" class="container">
+        <div class="row">
+            <div class="col-md-12">
+<article class="page">
+    <h1 class="page-title">Projects</h1>
+    <div class="content">
+        <p>Software, datasets, and resources built in the group. Most come with a paper describing the work
+in more detail; see <a href="publications.html">Publications</a> for the full list.</p>
+    </div>
+
+    <div class="project-grid">
+        <div class="project-card">
+            <h2 class="project-name">
+                PrOnto
+<span class="project-status status-active">active</span>            </h2>
+            <p class="project-summary">Language model evaluation data for 859 languages, built by projecting annotations onto Bible translations. Makes it possible to benchmark multilingual models on languages that have no purpose-built test set.</p>
+<p class="project-people">Luke Gessler</p>            <p class="project-links">
+<a href="https://aclanthology.org/2024.lrec-main.1159">Paper</a>            </p>
+        </div>
+        <div class="project-card">
+            <h2 class="project-name">
+                MicroBERT
+<span class="project-status status-maintained">maintained</span>            </h2>
+            <p class="project-summary">Small monolingual BERT models for low-resource languages, trained with parameter reduction and multitask learning. Shows that useful pretrained models are reachable well below the data scale usually assumed.</p>
+<p class="project-people">Luke Gessler, Amir Zeldes</p>            <p class="project-links">
+<a href="https://doi.org/10.18653/v1/2022.mrl-1.9">Paper</a>            </p>
+        </div>
+        <div class="project-card">
+            <h2 class="project-name">
+                Midas Loop
+<span class="project-status status-maintained">maintained</span>            </h2>
+            <p class="project-summary">A human-in-the-loop annotation system for large multilayer corpora, which prioritises the annotations where human attention pays off most.</p>
+<p class="project-people">Luke Gessler, Lauren Levine, Amir Zeldes</p>            <p class="project-links">
+<a href="https://aclanthology.org/2022.law-1.13">Paper</a>            </p>
+        </div>
+        <div class="project-card">
+            <h2 class="project-name">
+                Xposition
+<span class="project-status status-maintained">maintained</span>            </h2>
+            <p class="project-summary">An online multilingual database of adpositional semantics, documenting how prepositions and postpositions carry meaning across languages.</p>
+<p class="project-people">Luke Gessler, Austin Blodgett, Joseph C. Ledford, Nathan Schneider</p>            <p class="project-links">
+<a href="https://aclanthology.org/2022.lrec-1.194">Paper</a>            </p>
+        </div>
+    </div>
+</article>
+            </div>
+        </div>
+    </div>
+    
+    <footer id="postamble" class="">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <p>&copy; LARC Group 2026</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="./theme/js/main.js"></script>
+</body>
+</html> 
