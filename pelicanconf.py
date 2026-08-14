@@ -25,26 +25,49 @@ DEFAULT_PAGINATION = False
 RELATIVE_URLS = True
 
 # Static content handling
-STATIC_PATHS = ['static']
+STATIC_PATHS = ['static', 'images']
 STATIC_SAVE_AS = '{path}'
 STATIC_URL = '{path}'
 
-# Extension support
-PLUGIN_PATHS = ['plugins']
-PLUGINS = ['asciidoc_reader', 'plugins.bibliography_plugin']
-READERS = {'asc': 'asciidoc_reader.AsciiDocReader'}
-ASCIIDOC_OPTIONS = []
-ASCIIDOC_BACKEND = 'html5'
+# Markdown extensions. This restates Pelican's defaults because setting
+# MARKDOWN replaces them wholesale rather than merging: 'extra' is what gives
+# us tables and definition lists, 'meta' parses the Title:/Date: headers, and
+# 'smarty' turns straight quotes, apostrophes and '--' into their typographic
+# equivalents in body text.
+MARKDOWN = {
+    'extension_configs': {
+        'markdown.extensions.codehilite': {'css_class': 'highlight'},
+        'markdown.extensions.extra': {},
+        'markdown.extensions.meta': {},
+        'markdown.extensions.smarty': {},
+    },
+    'output_format': 'html5',
+}
+
+# Shared plugins, installed from github.com/larc-iu/larc-site-utils. They only
+# hand data to templates, so all the rendering lives in themes/academic.
+PLUGINS = [
+    'larc_site_utils.yaml_data',
+    'larc_site_utils.publications',
+    'larc_site_utils.news',
+]
+
+# Publications. Everyone on the people page is highlighted in author lists, so
+# a new member's papers start standing out the moment they are added to
+# people.yaml -- there is no second list of names to keep in sync.
+PUBLICATIONS_BIB = 'static/publications.bib'
+HIGHLIGHT_AUTHORS_FROM_YAML = 'people'
 
 # Turn off default templates (including index)
 DIRECT_TEMPLATES = []
 
-# Enable pages in menu
-DISPLAY_PAGES_ON_MENU = True
-
-# Custom menu configuration
+# Site navigation, rendered by themes/academic/templates/base.html
 MENUITEMS = (
     ('About', '/index.html'),
+    ('People', '/people.html'),
+    ('Projects', '/projects.html'),
+    ('Publications', '/publications.html'),
+    ('News', '/news.html'),
 )
 
 # Disable categories and tags
@@ -52,15 +75,26 @@ CATEGORY_SAVE_AS = ''
 AUTHOR_SAVE_AS = ''
 TAG_SAVE_AS = ''
 
-# Treat all content as pages - include the root content directory
-ARTICLE_PATHS = []
+# Everything is a page except news/, which holds dated articles. The folder
+# name becomes the category, which is how templates tell the two apart.
+ARTICLE_PATHS = ['news']
 PAGE_PATHS = ['']
+PAGE_EXCLUDES = ['news']
+
+# How much news the home page shows: at most HOME_NEWS_MAX posts, and none
+# older than HOME_NEWS_MONTHS, so the section empties itself during quiet
+# stretches instead of showing something stale.
+HOME_NEWS_MAX = 3
+HOME_NEWS_MONTHS = 6
 
 # URL and path configurations
-PATH_METADATA = '(?P<path_no_ext>.*)\..*'
+PATH_METADATA = r'(?P<path_no_ext>.*)\..*'
 SLUG_REGEX_SUBSTITUTIONS = [(r'[^\w/]+', '-')]
 PAGE_URL = '{path_no_ext}.html'
 PAGE_SAVE_AS = '{path_no_ext}.html'
+ARTICLE_URL = '{path_no_ext}.html'
+ARTICLE_SAVE_AS = '{path_no_ext}.html'
+DEFAULT_DATE_FORMAT = '%B %d, %Y'
 INDEX_URL = '{path_no_ext}/index.html'
 INDEX_SAVE_AS = '{path_no_ext}/index.html'
 
@@ -71,30 +105,7 @@ SLUGIFY_SOURCE = 'basename'
 TRANSLATION_ID_METADATA = 'path'
 
 # Field formatting
-FORMATTED_FIELDS = ['summary', 'title', 'path', 'url', 'save_as']
-
-# Custom content processor for handling AsciiDoc files
-def content_filter(path, metadata):
-    """Debug and process metadata for AsciiDoc files"""
-    print(f"Processing {path}")
-    print(f"Initial metadata: {metadata}")
-    
-    # Special handling for index.adoc files
-    if path.endswith('index.adoc'):
-        metadata['save_as'] = path.replace('index.adoc', 'index.html')
-        metadata['url'] = path.replace('index.adoc', '')
-        if metadata['url'] == '':
-            metadata['url'] = '/'
-        return True
-    # For all other .adoc files
-    elif path.endswith('.adoc'):
-        html_path = path.replace('.adoc', '.html')
-        metadata['save_as'] = html_path
-        metadata['url'] = html_path
-        return True
-    return False
-
-PROCESS_METADATA = content_filter
+FORMATTED_FIELDS = ['summary', 'path', 'url', 'save_as']
 
 # Theme
 THEME = 'themes/academic'

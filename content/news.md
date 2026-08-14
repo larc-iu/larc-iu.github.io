@@ -1,0 +1,2 @@
+Title: News
+Template: news

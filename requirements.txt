@@ -1,9 +1,4 @@
-setuptools
-pelican>=4.8.0
-invoke>=2.0.0
-livereload>=2.6.3
-ghp-import>=2.1.0
-markdown>=3.4.1
-typogrify>=2.0.7
-asciidoc>=10.0.0 
-pybtex>=0.24.0
+# pybtex and PyYAML arrive as dependencies of larc-site-utils. asciidoc is no
+# longer needed: the site is Markdown now.
+pelican[markdown]>=4.11.0
+larc-site-utils @ git+https://github.com/larc-iu/larc-site-utils@master

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} &middot; {{ SITENAME }}{% endblock %}
+
+{% block description %}Publications by members of the LARC group at Indiana University{% endblock %}
+
+{# "A", "A and B", "A, B, and C" -- the serial comma only appears once there are
+   three or more names to separate. #}
+{% macro author_list(authors) -%}
+    {%- for author in authors -%}
+        {%- if not loop.first -%}
+            {%- if loop.last -%}
+                {%- if loop.length > 2 %},{% endif %} and
+            {%- else -%}
+                ,
+            {%- endif %}
+        {%- endif %} <span class="pub-author{% if author.highlight %} pub-author-highlight{% endif %}">{{ author.full }}</span>
+    {%- endfor -%}
+{%- endmacro %}
+
+{% block content %}
+<article class="page">
+    <h1 class="page-title">{{ page.title }}</h1>
+    <div class="content">
+        {{ page.content }}
+    </div>
+
+    {% for group in publications.by_year %}
+    <section class="pub-year">
+        <h2 class="pub-year-heading">{{ group.year|default('Undated', true) }}</h2>
+        <ul class="pub-list">
+            {% for pub in group.entries %}
+            <li class="pub kind-{{ pub.kind }}">
+                <div class="pub-title">
+                    {% if pub.url %}<a href="{{ pub.url }}">{{ pub.title }}</a>{% else %}{{ pub.title }}{% endif %}
+                </div>
+                {% if pub.authors %}<div class="pub-authors">{{ author_list(pub.authors) }}</div>{% endif %}
+                {% if pub.venue %}
+                <div class="pub-venue">
+                    <em>{{ pub.venue }}</em>
+                    {%- if pub.pages %}, pages {{ pub.pages }}{% endif -%}
+                    {%- if pub.address %}, {{ pub.address }}{% endif -%}.
+                </div>
+                {% endif %}
+                {% if pub.links %}
+                <div class="pub-links">
+                    {% for link in pub.links %}<a href="{{ link.url }}">{{ link.label }}</a>{% endfor %}
+                </div>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% else %}
+    <p>No publications listed yet.</p>
+    {% endfor %}
+</article>
+{% endblock %}

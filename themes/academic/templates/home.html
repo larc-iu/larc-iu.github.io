@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}{{ SITENAME }} &middot; Linguistic Algorithms, Resources, and Conservation{% endblock %}
+
+{% block description %}{{ page.summary|striptags }}{% endblock %}
+
+{% block content %}
+<article class="page">
+    <div class="content">
+        {{ page.content }}
+    </div>
+</article>
+
+{# Recent news, hidden entirely when nothing is recent enough, so the home page
+   doesn't advertise a quiet stretch. #}
+{% set recent = recent_articles(articles, category='news', limit=HOME_NEWS_MAX, months=HOME_NEWS_MONTHS) %}
+{% if recent %}
+<section class="home-section">
+    <h2 class="home-heading">
+        Recent News
+        <a class="home-more" href="{{ SITEURL }}/news.html">All news &rarr;</a>
+    </h2>
+    <div class="post-list">
+        {% for post in recent %}
+        <article class="post-card">
+            <p class="post-card-meta">{{ post.locale_date }}</p>
+            <h3 class="post-card-title"><a href="{{ SITEURL }}/{{ post.url }}">{{ post.title }}</a></h3>
+            <p class="post-card-summary">{{ post.summary|striptags|truncate(220) }}</p>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+{% endblock %}

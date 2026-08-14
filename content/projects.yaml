@@ -1,0 +1,57 @@
+# Projects shown as cards on /projects.html, in the order listed here.
+#
+# The entries below were seeded from publications.bib so the page isn't empty
+# on first build -- names, descriptions and paper links come from the .bib and
+# are accurate, but the list is Luke's past work rather than the group's
+# current agenda. Edit, reorder, and delete freely; code and demo links are
+# left out because they need real URLs rather than guesses.
+#
+# Per project:
+#   name       (required)  short, as you'd say it out loud
+#   summary    (required)  two or three sentences, no more -- this is a card
+#   status                 active | maintained | archived, shown as a small label
+#   people                 free text, e.g. "Luke Gessler, with Amir Zeldes"
+#   links                  [{label, url}, ...] in the order you want them shown
+
+projects:
+  - name: "PrOnto"
+    summary: >-
+      Language model evaluation data for 859 languages, built by projecting
+      annotations onto Bible translations. Makes it possible to benchmark
+      multilingual models on languages that have no purpose-built test set.
+    status: "active"
+    people: "Luke Gessler"
+    links:
+      - label: "Paper"
+        url: "https://aclanthology.org/2024.lrec-main.1159"
+
+  - name: "MicroBERT"
+    summary: >-
+      Small monolingual BERT models for low-resource languages, trained with
+      parameter reduction and multitask learning. Shows that useful pretrained
+      models are reachable well below the data scale usually assumed.
+    status: "maintained"
+    people: "Luke Gessler, Amir Zeldes"
+    links:
+      - label: "Paper"
+        url: "https://doi.org/10.18653/v1/2022.mrl-1.9"
+
+  - name: "Midas Loop"
+    summary: >-
+      A human-in-the-loop annotation system for large multilayer corpora, which
+      prioritises the annotations where human attention pays off most.
+    status: "maintained"
+    people: "Luke Gessler, Lauren Levine, Amir Zeldes"
+    links:
+      - label: "Paper"
+        url: "https://aclanthology.org/2022.law-1.13"
+
+  - name: "Xposition"
+    summary: >-
+      An online multilingual database of adpositional semantics, documenting how
+      prepositions and postpositions carry meaning across languages.
+    status: "maintained"
+    people: "Luke Gessler, Austin Blodgett, Joseph C. Ledford, Nathan Schneider"
+    links:
+      - label: "Paper"
+        url: "https://aclanthology.org/2022.lrec-1.194"

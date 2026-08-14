@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} &middot; {{ SITENAME }}{% endblock %}
+
+{% block description %}Software, datasets, and resources built by the LARC group{% endblock %}
+
+{% block content %}
+<article class="page">
+    <h1 class="page-title">{{ page.title }}</h1>
+    <div class="content">
+        {{ page.content }}
+    </div>
+
+    <div class="project-grid">
+        {% for project in yaml_data.projects.projects %}
+        <div class="project-card">
+            <h2 class="project-name">
+                {{ project.name }}
+                {% if project.status %}<span class="project-status status-{{ project.status }}">{{ project.status }}</span>{% endif %}
+            </h2>
+            <p class="project-summary">{{ project.summary }}</p>
+            {% if project.people %}<p class="project-people">{{ project.people }}</p>{% endif %}
+            {% if project.links %}
+            <p class="project-links">
+                {% for link in project.links %}<a href="{{ link.url }}">{{ link.label }}</a>{% endfor %}
+            </p>
+            {% endif %}
+        </div>
+        {% else %}
+        <p>No projects listed yet.</p>
+        {% endfor %}
+    </div>
+</article>
+{% endblock %}

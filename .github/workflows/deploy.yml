@@ -11,19 +11,14 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.13'
-
-      - name: Install TeX Live and other dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y texlive-base texlive-bibtex-extra
 
       - name: Install Python dependencies
         run: |
@@ -40,8 +35,11 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./output
           force_orphan: false
-          keep_files: true
+          # Publish exactly what was built. This was previously true, which is
+          # how a stale CNAME kept the site pointed at another domain long
+          # after the setting that created it was gone: files that stop being
+          # generated were never removed from the branch.
+          keep_files: false
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
           commit_message: 'Deploy to GitHub Pages'
-          cname: lgessler.com  # Include this if you have a custom domain 

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} &middot; {{ SITENAME }}{% endblock %}
+
+{% block description %}News and updates from the LARC group at Indiana University{% endblock %}
+
+{% block content %}
+<article class="page">
+    <h1 class="page-title">{{ page.title }}</h1>
+    <div class="content">
+        {{ page.content }}
+    </div>
+
+    <div class="post-list">
+        {% for post in recent_articles(articles, category='news') %}
+        <article class="post-card">
+            <p class="post-card-meta">{{ post.locale_date }}</p>
+            <h2 class="post-card-title"><a href="{{ SITEURL }}/{{ post.url }}">{{ post.title }}</a></h2>
+            <p class="post-card-summary">{{ post.summary|striptags|truncate(300) }}</p>
+        </article>
+        {% else %}
+        <p>No news posts yet.</p>
+        {% endfor %}
+    </div>
+</article>
+{% endblock %}

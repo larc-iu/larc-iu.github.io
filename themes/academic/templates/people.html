@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} &middot; {{ SITENAME }}{% endblock %}
+
+{% block description %}Faculty and students in the LARC group at Indiana University{% endblock %}
+
+{% macro display_name(person) -%}
+    {%- if person.name is string %}{{ person.name }}{% else %}{{ person.name|join(' ') }}{% endif -%}
+{%- endmacro %}
+
+{% macro initials(person) -%}
+    {%- if person.name is string -%}
+        {{ person.name[:2]|upper }}
+    {%- else -%}
+        {{ person.name[0][0]|upper }}{{ person.name[-1][0]|upper }}
+    {%- endif -%}
+{%- endmacro %}
+
+{# Headings for the section keys in people.yaml. Title-casing the key is the
+   fallback, but it turns 'pi' into "Pi" and 'phd_students' into "Phd Students",
+   so the ones with real names are spelled out here. #}
+{% set section_labels = {
+    'pi': 'Principal Investigator',
+    'faculty': 'Faculty',
+    'postdocs': 'Postdocs',
+    'phd_students': 'Ph.D. Students',
+    'ms_students': 'M.S. Students',
+    'undergraduates': 'Undergraduates',
+    'collaborators': 'Collaborators',
+    'alumni': 'Alumni'
+} %}
+
+{% block content %}
+<article class="page">
+    <h1 class="page-title">{{ page.title }}</h1>
+    <div class="content">
+        {{ page.content }}
+    </div>
+
+    {% for section_name, people_list in yaml_data.people.items() %}
+        {# Sections with nobody in them are skipped rather than rendering a bare
+           heading, so people.yaml can keep placeholders for groups we don't have
+           yet. #}
+        {% if people_list %}
+            <h2 class="people-heading">{{ section_labels.get(section_name, section_name|replace('_', ' ')|title) }}</h2>
+
+            {# Alphabetical by surname; alumni lead with the most recent
+               graduating class, which works because Jinja's sort is stable. #}
+            {% set ordered = people_list|sort(attribute='name.1') %}
+            {% if section_name == 'alumni' %}
+                {% set ordered = ordered|sort(attribute='graduated', reverse=True) %}
+            {% endif %}
+
+            <div class="people-grid">
+                {% for person in ordered %}
+                <div class="person-card role-{{ person.role|default('member') }}">
+                    <div class="person-photo">
+                        {% if person.photo %}
+                            <img src="{{ SITEURL }}/{{ person.photo }}" alt="{{ display_name(person) }}" class="person-image">
+                        {% else %}
+                            <div class="person-placeholder"><span>{{ initials(person) }}</span></div>
+                        {% endif %}
+                    </div>
+                    <div class="person-info">
+                        <h3 class="person-name">
+                            {% if person.website %}
+                                <a href="{{ person.website }}">{{ display_name(person) }}</a>
+                            {% else %}
+                                {{ display_name(person) }}
+                            {% endif %}
+                        </h3>
+                        {% if person.title %}
+                            <p class="person-title">{{ person.title }}{% if person.graduated %}, {{ person.graduated }}{% endif %}</p>
+                        {% endif %}
+                        {% if person.interests %}
+                            <p class="person-interests">{{ person.interests }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endfor %}
+</article>
+{% endblock %}

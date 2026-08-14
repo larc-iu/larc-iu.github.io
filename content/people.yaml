@@ -1,0 +1,53 @@
+# People shown on /people.html, and the source of the highlighted names on
+# /publications.html -- adding someone here makes their papers stand out in
+# author lists automatically (see HIGHLIGHT_AUTHORS_FROM_YAML in pelicanconf.py).
+#
+# Top-level keys become section headings and render in the order they appear
+# here. The heading text for each key is set in themes/academic/templates/
+# people.html; a key that isn't listed there falls back to title-casing, which
+# is fine for a word like "postdocs" and wrong for anything with an initialism.
+# An empty section is skipped rather than rendering a bare heading, so the
+# placeholders below stay invisible until you add someone to them.
+#
+# Per person:
+#   name       (required)  [first, last] -- surname is used for alphabetical sorting
+#   title                  role and affiliation, shown under the name
+#   website                linked from the name
+#   photo                  path under content/, e.g. images/people/first_last.jpg
+#   interests              a short phrase, not a paragraph
+#   role                   used only as a CSS class (role-faculty, role-phd, ...)
+#   graduated              required for alumni: year, sorts them most-recent-first
+
+pi:
+  - name: ["Luke", "Gessler"]
+    title: "Assistant Professor, Department of Linguistics"
+    website: "https://lgessler.com"
+    photo: "images/people/luke_gessler.jpg"
+    role: "faculty"
+    interests: "Low-resource NLP, language documentation, annotation tooling"
+
+phd_students: []
+  # - name: ["First", "Last"]
+  #   title: "Ph.D. student, Computational Linguistics"
+  #   photo: "images/people/first_last.jpg"
+  #   role: "phd"
+  #   interests: "..."
+
+ms_students: []
+  # - name: ["First", "Last"]
+  #   title: "M.S. student, Computational Linguistics"
+  #   role: "ms"
+
+undergraduates: []
+
+collaborators: []
+  # - name: ["First", "Last"]
+  #   title: "Associate Professor, Some University"
+  #   website: "https://example.org"
+  #   role: "collaborator"
+
+alumni: []
+  # - name: ["First", "Last"]
+  #   title: "M.S., Computational Linguistics"
+  #   graduated: 2026
+  #   role: "alum"
