@@ -1,9 +1,19 @@
 name: Deploy to GitHub Pages
 
+# Publishing is manual for now: the new News/People/Projects/Publications pages
+# are finished but not signed off, and gh-pages is deliberately holding the
+# older "under construction" page until they are.
+#
+# TO GO LIVE: uncomment the push trigger below and push to main (or just run
+# this workflow by hand from the Actions tab, which publishes main as it
+# stands).
+#
+# on:
+#   push:
+#     branches:
+#       - main
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   deploy:
