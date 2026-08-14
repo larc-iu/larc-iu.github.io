@@ -87,8 +87,17 @@ PAGE_EXCLUDES = ['news']
 HOME_NEWS_MAX = 3
 HOME_NEWS_MONTHS = 6
 
-# URL and path configurations
-PATH_METADATA = r'(?P<path_no_ext>.*)\..*'
+# URL and path configurations.
+#
+# The category group is what makes an article in content/news/ come out with
+# category 'news', which is how templates tell news apart from pages. Pelican
+# normally derives that from the folder name, but since 4.12 it only does so
+# when CATEGORY_SAVE_AS is truthy (readers.py, USE_FOLDER_AS_CATEGORY), and we
+# set that empty to suppress category pages. Without this, articles have no
+# category attribute at all: category-filtered lists come out empty and
+# building a draft raises AttributeError. Capturing it here works the same on
+# either side of that change.
+PATH_METADATA = r'(?P<path_no_ext>(?:(?P<category>[^/]+)/)?.*)\..*'
 SLUG_REGEX_SUBSTITUTIONS = [(r'[^\w/]+', '-')]
 PAGE_URL = '{path_no_ext}.html'
 PAGE_SAVE_AS = '{path_no_ext}.html'
