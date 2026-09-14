@@ -1,17 +1,16 @@
 name: Deploy to GitHub Pages
 
-# Publishing is manual, and gh-pages is deliberately holding an older "under
-# construction" page until the new site is signed off.
+# Every push to main builds the site and publishes it to gh-pages. This was
+# manual-only from 2026-08-14 while the rewritten site was under review; the
+# hold was lifted on 2026-09-14 once it was signed off.
 #
-# TO GO LIVE: uncomment the push trigger below and push to main (or just run
-# this workflow by hand from the Actions tab, which publishes main as it
-# stands).
-#
-# on:
-#   push:
-#     branches:
-#       - main
+# workflow_dispatch is kept so the site can also be republished by hand from
+# the Actions tab without an empty commit.
+
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
