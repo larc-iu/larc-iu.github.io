@@ -2,7 +2,7 @@
 
 {% block title %}{{ page.title }} &middot; {{ SITENAME }}{% endblock %}
 
-{% block description %}Faculty and students in the LARC group at Indiana University{% endblock %}
+{% block description %}Faculty and students in the LARC Lab at Indiana University{% endblock %}
 
 {% macro display_name(person) -%}
     {%- if person.name is string %}{{ person.name }}{% else %}{{ person.name|join(' ') }}{% endif -%}
@@ -32,7 +32,6 @@
 
 {% block content %}
 <article class="page">
-    <h1 class="page-title">{{ page.title }}</h1>
     <div class="content">
         {{ page.content }}
     </div>

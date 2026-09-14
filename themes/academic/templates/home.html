@@ -9,26 +9,70 @@
     <div class="content">
         {{ page.content }}
     </div>
-</article>
 
-{# Recent news, hidden entirely when nothing is recent enough, so the home page
-   doesn't advertise a quiet stretch. #}
-{% set recent = recent_articles(articles, category='news', limit=HOME_NEWS_MAX, months=HOME_NEWS_MONTHS) %}
-{% if recent %}
-<section class="home-section">
-    <h2 class="home-heading">
-        Recent News
-        <a class="home-more" href="{{ SITEURL }}/news.html">All news &rarr;</a>
-    </h2>
-    <div class="post-list">
-        {% for post in recent %}
-        <article class="post-card">
-            <p class="post-card-meta">{{ post.locale_date }}</p>
-            <h3 class="post-card-title"><a href="{{ SITEURL }}/{{ post.url }}">{{ post.title }}</a></h3>
-            <p class="post-card-summary">{{ post.summary|striptags|truncate(220) }}</p>
-        </article>
-        {% endfor %}
-    </div>
-</section>
-{% endif %}
+    {# Recent news, hidden entirely when nothing is recent enough, so the home
+       page doesn't advertise a quiet stretch. It sits above Projects: news is
+       what changes, and Projects is the stable part underneath it. #}
+    {% set recent = recent_articles(articles, category='news', limit=HOME_NEWS_MAX, months=HOME_NEWS_MONTHS) %}
+    {% if recent %}
+    <section class="home-section">
+        <h2 class="home-heading">
+            Recent News
+            <a class="home-more" href="{{ SITEURL }}/news.html">All news &rarr;</a>
+        </h2>
+        <div class="post-list">
+            {% for post in recent %}
+            <article class="post-card">
+                <p class="post-card-meta">{{ post.locale_date }}</p>
+                <h3 class="post-card-title"><a href="{{ SITEURL }}/{{ post.url }}">{{ post.title }}</a></h3>
+                <p class="post-card-summary">{{ post.summary|striptags|truncate(220) }}</p>
+            </article>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    {# Projects live on the home page rather than on a page of their own -- the
+       nav slot that used to hold Research is Publications now. The heading is
+       a plain h2 so that it matches the ones coming out of index.md's
+       Markdown, not .home-heading, which is for sections with a "more" link. #}
+    {% if yaml_data.projects and yaml_data.projects.projects %}
+    <section class="home-section">
+        <h2>Projects</h2>
+        <div class="project-list">
+            {% for project in yaml_data.projects.projects %}
+            {# An entry without an image spans the whole row rather than leaving
+               an empty column, so a new project can go up before there's art. #}
+            <section class="project-item{% if not project.image %} project-item--no-image{% endif %}">
+                {% if project.image %}
+                <div class="project-figure">
+                    <img src="{{ SITEURL }}/{{ project.image }}"
+                         alt="{{ project.image_alt|default(project.name, true) }}"
+                         class="project-image">
+                </div>
+                {% endif %}
+                <div class="project-body">
+                    <h3 class="project-name">
+                        {{ project.name }}
+                        {% if project.years %}<span class="project-years">{{ project.years|replace('-', '–') }}</span>{% endif %}
+                    </h3>
+                    {# summary is a YAML block scalar, so blank lines in it are
+                       the author's paragraph breaks. Splitting here is what lets
+                       an entry run to a paragraph or two without projects.yaml
+                       carrying a list of strings for every project. #}
+                    {% for paragraph in project.summary.split('\n\n') if paragraph.strip() %}
+                    <p class="project-summary">{{ paragraph.strip() }}</p>
+                    {% endfor %}
+                    {% if project.links %}
+                    <p class="project-links">
+                        {% for link in project.links %}<a href="{{ link.url }}">{{ link.label }}</a>{% endfor %}
+                    </p>
+                    {% endif %}
+                </div>
+            </section>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+</article>
 {% endblock %}

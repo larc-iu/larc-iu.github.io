@@ -2,7 +2,7 @@
 
 {% block title %}{{ page.title }} &middot; {{ SITENAME }}{% endblock %}
 
-{% block description %}Publications by members of the LARC group at Indiana University{% endblock %}
+{% block description %}Publications by members of the LARC Lab at Indiana University{% endblock %}
 
 {# "A", "A and B", "A, B, and C" -- the serial comma only appears once there are
    three or more names to separate. #}
@@ -20,7 +20,6 @@
 
 {% block content %}
 <article class="page">
-    <h1 class="page-title">{{ page.title }}</h1>
     <div class="content">
         {{ page.content }}
     </div>
@@ -32,21 +31,28 @@
             {% for pub in group.entries %}
             <li class="pub kind-{{ pub.kind }}">
                 <div class="pub-title">
+                    {%- if pub.award %}<span class="pub-award" title="{{ pub.award }}">&#127942;</span> {% endif -%}
                     {% if pub.url %}<a href="{{ pub.url }}">{{ pub.title }}</a>{% else %}{{ pub.title }}{% endif %}
                 </div>
                 {% if pub.authors %}<div class="pub-authors">{{ author_list(pub.authors) }}</div>{% endif %}
-                {% if pub.venue %}
-                <div class="pub-venue">
-                    <em>{{ pub.venue }}</em>
-                    {%- if pub.pages %}, pages {{ pub.pages }}{% endif -%}
-                    {%- if pub.address %}, {{ pub.address }}{% endif -%}.
+                {# Venue and any extra links share one line, separated by middle
+                   dots, as on lgessler.com. Pages, place and DOI are all in the
+                   .bib and all left out: the title already links to the paper. #}
+                {%- set meta = [] %}
+                {%- if pub.venue %}{% set _ = meta.append('venue') %}{% endif %}
+                {%- for link in pub.links %}{% set _ = meta.append(link) %}{% endfor %}
+                {%- if meta %}
+                <div class="pub-meta">
+                    {%- for item in meta -%}
+                        {%- if not loop.first %} &middot; {% endif -%}
+                        {%- if item == 'venue' -%}
+                            <span class="pub-venue">{{ pub.venue }}{% if pub.award %} ({{ pub.award }}){% endif %}</span>
+                        {%- else -%}
+                            <a href="{{ item.url }}">{{ item.label|lower }}</a>
+                        {%- endif -%}
+                    {%- endfor -%}
                 </div>
-                {% endif %}
-                {% if pub.links %}
-                <div class="pub-links">
-                    {% for link in pub.links %}<a href="{{ link.url }}">{{ link.label }}</a>{% endfor %}
-                </div>
-                {% endif %}
+                {%- endif %}
             </li>
             {% endfor %}
         </ul>

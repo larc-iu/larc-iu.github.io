@@ -14,7 +14,10 @@
 #   title                  role and affiliation, shown under the name
 #   website                linked from the name
 #   photo                  path under content/, e.g. images/people/first_last.jpg
-#   interests              a short phrase, not a paragraph
+#   interests              a short phrase, not a paragraph. Unused right now --
+#                          cards are name and title only -- but people.html
+#                          still renders it, so adding it back to an entry is
+#                          all it takes to show it.
 #   role                   used only as a CSS class (role-faculty, role-phd, ...)
 #   graduated              required for alumni: year, sorts them most-recent-first
 
@@ -24,14 +27,28 @@ pi:
     website: "https://lgessler.com"
     photo: "images/people/luke_gessler.jpg"
     role: "faculty"
-    interests: "Low-resource NLP, language documentation, annotation tooling"
 
-phd_students: []
-  # - name: ["First", "Last"]
-  #   title: "Ph.D. student, Computational Linguistics"
-  #   photo: "images/people/first_last.jpg"
-  #   role: "phd"
-  #   interests: "..."
+phd_students:
+  - name: ["Phakphum", "Artkaew"]
+    title: "Ph.D. student, Computational Linguistics"
+    website: "https://phakphumadev.github.io/"
+    photo: "images/people/phakphum_artkaew.jpg"
+    role: "phd"
+  - name: ["Nils", "Hjortnaes"]
+    title: "Ph.D. student, Computational Linguistics"
+    website: "https://www.linkedin.com/in/nils-hjortnaes"
+    photo: "images/people/nils_hjortnaes.jpg"
+    role: "phd"
+  - name: ["Caroline", "Amodeo Williams"]
+    title: "Ph.D. student, Computational Linguistics & Hispanic Linguistics"
+    website: "https://www.linkedin.com/in/carolineamodeo"
+    photo: "images/people/caroline_williams.jpg"
+    role: "phd"
+  - name: ["Abdullah", "Alharthi"]
+    title: "Ph.D. student, Computational Linguistics"
+    # website: ""
+    # photo: ""
+    role: "phd"
 
 ms_students: []
   # - name: ["First", "Last"]

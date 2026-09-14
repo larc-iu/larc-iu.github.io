@@ -2,7 +2,7 @@ import datetime
 
 CURRENT_YEAR = datetime.datetime.now().year
 
-AUTHOR = 'LARC Group'
+AUTHOR = 'LARC Lab'
 SITENAME = 'LARC'
 SITEURL = "https://larc-iu.github.io"
 
@@ -57,9 +57,11 @@ PLUGINS = [
 # people.yaml -- there is no second list of names to keep in sync.
 PUBLICATIONS_BIB = 'static/publications.bib'
 HIGHLIGHT_AUTHORS_FROM_YAML = 'people'
-# Show work from 2024 onward. Earlier entries stay in the .bib rather than
-# being deleted, so moving or lifting the cutoff later is a one-line change.
-PUBLICATIONS_MIN_YEAR = 2024
+# These two match lgessler.com. The venue line stays a venue line: most entries
+# have a DOI, and offering it as a second link next to every one of them is
+# noise -- the title already links to the paper.
+PUBLICATIONS_LINK_FIELDS = [('code', 'code')]
+PUBLICATIONS_DOI_LINK = False
 
 # Turn off default templates (including index)
 DIRECT_TEMPLATES = []
@@ -68,10 +70,18 @@ DIRECT_TEMPLATES = []
 MENUITEMS = (
     ('About', '/index.html'),
     ('People', '/people.html'),
-    ('Projects', '/projects.html'),
-    ('Publications', '/publications.html'),
     ('News', '/news.html'),
+    ('Publications', '/publications.html'),
+    ('Join', '/join.html'),
 )
+
+# Drafts are not written out at all. Pelican's default is to publish them to
+# /drafts/, which put content/news/_example-post.md -- a file whose own body
+# says it "does not appear on the news page" -- on the public site.
+DRAFT_SAVE_AS = ''
+DRAFT_URL = ''
+DRAFT_PAGE_SAVE_AS = ''
+DRAFT_PAGE_URL = ''
 
 # Disable categories and tags
 CATEGORY_SAVE_AS = ''
@@ -80,6 +90,9 @@ TAG_SAVE_AS = ''
 
 # Everything is a page except news/, which holds dated articles. The folder
 # name becomes the category, which is how templates tell the two apart.
+#
+# Note that content/projects.yaml has no page of its own: home.html renders it
+# under "Projects" on the About page.
 ARTICLE_PATHS = ['news']
 PAGE_PATHS = ['']
 PAGE_EXCLUDES = ['news']
@@ -117,7 +130,9 @@ SLUGIFY_SOURCE = 'basename'
 TRANSLATION_ID_METADATA = 'path'
 
 # Field formatting
-FORMATTED_FIELDS = ['summary', 'path', 'url', 'save_as']
+# 'banner' is in here so a page's Banner: metadata can carry Markdown -- a
+# recruiting notice usually wants a link in it.
+FORMATTED_FIELDS = ['summary', 'path', 'url', 'save_as', 'banner']
 
 # Theme
 THEME = 'themes/academic'

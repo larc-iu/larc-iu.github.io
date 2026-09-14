@@ -6,7 +6,12 @@
 
 {% block content %}
     <article class="page">
-        <h1 class="page-title">{{ page.title }}</h1>
+        {# An announcement band, for things that shouldn't be buried in prose --
+           a recruiting notice, say. Set Banner: in the page's metadata; delete
+           that line and the band disappears. #}
+        {% if page.banner %}
+        <aside class="page-banner">{{ page.banner }}</aside>
+        {% endif %}
         <div class="content">
             {{ page.content }}
         </div>

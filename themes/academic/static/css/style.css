@@ -136,7 +136,8 @@ header {
   color: var(--main-text-color);
   text-decoration: none;
   font-weight: 500;
-  padding: 8px 0;
+  padding: 8px 0 5px;
+  border-bottom: 2px solid transparent;
   transition: color 0.2s ease;
 }
 
@@ -148,17 +149,7 @@ header {
 
 .nav-link.active {
   color: var(--link-color);
-  position: relative;
-}
-
-.nav-link.active::after {
-  content: '';
-  position: absolute;
-  bottom: -17px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: var(--link-color);
+  border-bottom-color: var(--link-color);
 }
 
 /* Lists */
@@ -180,6 +171,48 @@ ol p {
 /* Page headings */
 .page-title {
   margin-bottom: 0.6em;
+}
+
+/* Images embedded in body copy are held to the column -- a news post can
+   reference a photo at whatever size it was shot. */
+.content img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Announcement band, set by a page's Banner: metadata. Tinted and edged in
+   the link colour so it reads as a notice rather than as body text, which is
+   the whole point on a recruiting page. */
+.page-banner {
+  margin: 0 0 28px;
+  padding: 14px 18px;
+  border: 1px solid #cfe0ef;
+  border-left: 4px solid var(--link-color);
+  border-radius: 6px;
+  background-color: #f4f8fc;
+}
+
+/* Banner: is a formatted field, so its text arrives wrapped in a <p>. */
+.page-banner p {
+  margin: 0;
+}
+
+/* Home page hero. Nothing uses this yet -- the group has no photo of its own,
+   and CL's group photo is of IU linguistics broadly rather than of LARC. To
+   add one, drop the file in content/images/ and put this at the top of
+   content/index.md:
+
+     <div id="hero"><img class="hero-image" src="{static}/images/hero.jpg"
+       alt="The LARC group" /></div> */
+#hero {
+  margin: 0 0 28px;
+}
+
+.hero-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
 }
 
 /* Home page sections */
@@ -316,17 +349,41 @@ ol p {
 }
 
 /* Projects */
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 24px;
-  margin-top: 24px;
+.project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+  margin-top: 28px;
 }
 
-.project-card {
+/* Image left, prose right. The image column is a fixed width rather than a
+   minmax() track so that the text starts at the same place all the way down
+   the page, which it would not once one entry has a tall image and the next a
+   wide one. At 128px it suits a logo or app icon, not a screenshot. */
+.project-item {
+  display: grid;
+  grid-template-columns: 128px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* An entry with no image gets the whole row, instead of sitting in the
+   right-hand column with a gap beside it. */
+.project-item--no-image {
+  grid-template-columns: 1fr;
+}
+
+.project-figure {
+  margin: 0;
+}
+
+.project-image {
+  display: block;
+  width: 100%;
+  max-width: 128px;
+  height: auto;
   border: 1px solid #eee;
   border-radius: 6px;
-  padding: 18px 20px;
 }
 
 .project-name {
@@ -334,45 +391,22 @@ ol p {
   align-items: center;
   flex-wrap: wrap;
   gap: 10px;
-  margin: 0 0 8px;
+  margin: 0 0 10px;
   padding: 0;
   border: none;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 }
 
-.project-status {
-  padding: 2px 8px;
-  border-radius: 10px;
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.status-active {
-  background-color: #e5f2e8;
-  color: #2c6b3f;
-}
-
-.status-maintained {
-  background-color: #eaf0f7;
-  color: #2f5d8c;
-}
-
-.status-archived {
-  background-color: #f0f0f0;
-  color: #666;
+.project-years {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: #777;
 }
 
 .project-summary {
-  margin: 0 0 10px;
+  margin: 0 0 0.9em;
 }
 
-.project-people {
-  margin: 0 0 10px;
-  font-size: 0.85rem;
-  color: #777;
-}
 
 .project-links a {
   margin-right: 14px;
@@ -417,18 +451,26 @@ ol p {
   color: var(--main-text-color);
 }
 
-.pub-venue {
+.pub-meta {
   font-size: 0.9rem;
   color: #666;
 }
 
-.pub-links {
-  margin-top: 5px;
+.pub-meta a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: #c8c8c8;
+  text-underline-offset: 3px;
 }
 
-.pub-links a {
-  margin-right: 12px;
-  font-size: 0.85rem;
+.pub-meta a:hover,
+.pub-meta a:focus {
+  color: var(--link-color);
+  text-decoration-color: var(--link-color);
+}
+
+.pub-award {
+  font-size: 0.9rem;
 }
 
 /* Footer */
@@ -443,6 +485,17 @@ footer {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  /* A 200px image column is most of a phone screen, so the entry stacks and
+     the image keeps a sane maximum rather than going full width. */
+  .project-item {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .project-image {
+    max-width: 128px;
+  }
+
   .profile-container {
     flex-direction: column;
   }
@@ -482,10 +535,6 @@ footer {
   .navbar-nav {
     gap: 20px;
     flex-wrap: wrap;
-  }
-  
-  .nav-link.active::after {
-    bottom: -5px;
   }
 }
 
