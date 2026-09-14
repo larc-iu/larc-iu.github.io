@@ -42,7 +42,7 @@ projects:
     image_alt: "An old newspaper front page written in a language called Garo."
     years: "2024-"
     summary: |
-      The LARC Lab has published several benchmarks designed to help us better understand
+      We have published several benchmarks designed to help us better understand
       how well language technologies, such as language models, can process low-resource languages.
     links:
       - label: "CoRSAL-OCR (2026)"
