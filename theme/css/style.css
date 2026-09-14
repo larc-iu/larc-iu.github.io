@@ -354,18 +354,30 @@ ol p {
 
 .project-figure {
   margin: 0;
+  /* Centres a picture narrower than the column -- a portrait one, say. */
+  display: flex;
+  justify-content: center;
+}
+
+/* The anchor wraps the picture, so it has to shrink to it rather than
+   stretching across the column. */
+.project-figure a {
+  display: block;
+  line-height: 0;
+}
+
+/* Enough of a hover cue that the picture reads as clickable. */
+.project-figure a:hover .project-image,
+.project-figure a:focus-visible .project-image {
+  border-color: var(--link-color);
 }
 
 .project-image {
   display: block;
-  width: 100%;
+  transition: border-color 0.2s ease;
   max-width: 128px;
-  /* Bounded both ways so a portrait image doesn't run taller than a square
-     one and leave the column ragged. Nothing is cropped; a tall image just
-     ends up narrower than 128px. */
   max-height: 128px;
-  object-fit: contain;
-  object-position: top left;
+  width: auto;
   height: auto;
   border: 1px solid #eee;
   border-radius: 6px;
