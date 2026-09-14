@@ -46,9 +46,11 @@
             <section class="project-item{% if not project.image %} project-item--no-image{% endif %}">
                 {% if project.image %}
                 <div class="project-figure">
+                    {%- if project.links %}<a href="{{ project.links[0].url }}">{% endif -%}
                     <img src="{{ SITEURL }}/{{ project.image }}"
                          alt="{{ project.image_alt|default(project.name, true) }}"
                          class="project-image">
+                    {%- if project.links %}</a>{% endif -%}
                 </div>
                 {% endif %}
                 <div class="project-body">
