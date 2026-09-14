@@ -97,6 +97,17 @@ ARTICLE_PATHS = ['news']
 PAGE_PATHS = ['']
 PAGE_EXCLUDES = ['news']
 
+# News cards show the opening of the post body, cut to the length each
+# template asks for. Pelican derives that opening itself when a post has no
+# Summary: field -- which is the intended way to write one, so posts don't
+# carry a hand-written blurb that can drift from the text above it.
+#
+# This is set generously on purpose. Pelican trims to SUMMARY_MAX_LENGTH words
+# first and the template trims again to a character count, so if this were
+# lower than what a template asks for, the two cuts would fight and the
+# template's number would quietly stop meaning anything.
+SUMMARY_MAX_LENGTH = 80
+
 # How much news the home page shows: at most HOME_NEWS_MAX posts, and none
 # older than HOME_NEWS_MONTHS, so the section empties itself during quiet
 # stretches instead of showing something stale.

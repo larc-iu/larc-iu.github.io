@@ -1,6 +1,5 @@
 Title: LARC at ACL 2026: 🏆 Victor and Peter take #1 on AmericasNLP 2026 shared task for Guaraní
 Date: 2026-07-08
-Summary: Phakphum Artkaew's IUHoosiers submission placed first in the Guaraní track of the AmericasNLP 2026 shared task, and Luke Gessler presented two works at ComputEL.
 
 Congratulations to IUCL PhD students Phakphum Artkaew and Victor Shi on their submission
 of the [IUHoosiers system](https://aclanthology.org/2026.americasnlp-6.21/) to the 
