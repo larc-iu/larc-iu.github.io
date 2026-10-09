@@ -55,7 +55,8 @@ projects:
         url: "https://aclanthology.org/2024.lrec-main.1159/"
   - name: "Dipo"
     image: "images/projects/dipo.svg"
-    image_alt: "The Dipo logo: a depot with a different discourse structure in each bay."
+    image_alt: "The Dipo logo: a depot with a different discourse structure in each bay, over a DIPO nameplate."
+    image_width: 115
     years: "2026-"
     summary: |
       Dipo, the Discourse Parsing Omnibus (pronounced "depot"), is a collection of easy-to-use
