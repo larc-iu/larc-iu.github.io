@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="8 54 590 250" width="590" height="250">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
+<svg x="30.0" y="101.0" width="540" height="228.8" viewBox="8 54 590 250">
 <defs><marker id="mc" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto"><path d="M1 1.5 L9 5 L1 8.5 Z" fill="#F0705E" stroke="#F0705E" stroke-width="1.5" stroke-linejoin="round"/></marker><marker id="mm" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto"><path d="M1 1.5 L9 5 L1 8.5 Z" fill="#E9B949" stroke="#E9B949" stroke-width="1.5" stroke-linejoin="round"/></marker><marker id="mw" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto"><path d="M1 1.5 L9 5 L1 8.5 Z" fill="#F3EDE4" stroke="#F3EDE4" stroke-width="1.5" stroke-linejoin="round"/></marker>
 <clipPath id="d0"><path d="M50.0 290 V224.0 A42.0 42.0 0 0 1 134.0 224.0 V290 Z"/></clipPath>
 <clipPath id="d1"><path d="M167.0 290 V224.0 A42.0 42.0 0 0 1 251.0 224.0 V290 Z"/></clipPath>
@@ -31,4 +32,7 @@
 <path d="M401.0 290 V224.0 A42.0 42.0 0 0 1 485.0 224.0 V290 Z" fill="none" stroke="#2A1E1F" stroke-width="4" stroke-linejoin="round"/>
 <circle cx="304.0" cy="154.0" r="12" fill="#FFFFFF" stroke="#2A1E1F" stroke-width="3.5"/><path d="M304.0 147.5 V154.0 L308.5 157.0" fill="none" stroke="#2A1E1F" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"/>
 <line stroke="#2A1E1F" x1="22" y1="290" x2="584" y2="290" stroke-width="4.5" stroke-linecap="round"/>
+</svg>
+<rect x="101.1" y="359.9" width="397.8" height="139.1" rx="12" fill="#9E1B22" stroke="#2A1E1F" stroke-width="3.66"/>
+<g fill="#F3EDE4" transform="translate(130.03 471.66) scale(0.13 -0.13)"><path transform="translate(0 0)" d="M673 328Q673 180 586 90Q499 0 345 0H39V114H109V536H39V650H337Q504 650 588.5 561Q673 472 673 328ZM529 326Q529 536 334 536H243V114H334Q428 114 478.5 164Q529 214 529 326Z"/><path transform="translate(778 0)" d="M313 0H39V114H109V536H39V650H313V536H243V114H313Z"/><path transform="translate(1210 0)" d="M584 438Q584 327 511.5 272.5Q439 218 343 218H243V114H343V0H39V114H109V536H39V650H337Q458 650 521 593Q584 536 584 438ZM440 436Q440 484 413.5 510Q387 536 320 536H243V331H318Q387 331 413.5 360Q440 389 440 436Z"/><path transform="translate(1888 0)" d="M688 326Q688 188 599.5 89Q511 -10 353 -10Q194 -10 109 89Q24 188 24 324Q24 466 114 563Q204 660 357 660Q513 660 600.5 561.5Q688 463 688 326ZM543 322Q543 426 495 484Q447 542 356 542Q259 542 214 480.5Q169 419 169 327Q169 238 213 173Q257 108 360 108Q455 108 499 167.5Q543 227 543 322Z"/></g>
 </svg>
