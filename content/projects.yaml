@@ -59,8 +59,7 @@ projects:
     years: "2026-"
     summary: |
       Dipo, the Discourse Parsing Omnibus (pronounced "depot"), is a collection of easy-to-use
-      discourse parsers with pretrained models. It starts with Rhetorical Structure Theory and is
-      built to take on other discourse frameworks.
+      discourse parsers with pretrained models.
     links:
       - label: "Code"
         url: "https://github.com/larc-iu/dipo"
