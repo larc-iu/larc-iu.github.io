@@ -14,6 +14,9 @@
 #                          full width instead of leaving a gap.
 #   image_alt              alt text; defaults to the project name, which is
 #                          only right when the image *is* the name (a logo).
+#   image_width            optional, in px. Shrinks the picture below the 128px
+#                          cap, for one that looks too heavy beside its
+#                          neighbors (a full-bleed square, say).
 #   years                  when the work ran, shown next to the name. Write
 #                          plain hyphens; the template renders en dashes:
 #                            "2025"       a single year
@@ -28,6 +31,7 @@ projects:
   - name: "Plaid"
     image: "images/projects/plaid.png"
     image_alt: "The Plaid logo"
+    image_width: 115
     years: "2020-"
     summary: |
       Plaid is a platform for linguistic annotation applications focused on serving
@@ -49,4 +53,14 @@ projects:
         url: "https://aclanthology.org/2026.computel-1.14/"
       - label: "PrOnto (2024)"
         url: "https://aclanthology.org/2024.lrec-main.1159/"
-
+  - name: "Dipo"
+    image: "images/projects/dipo.svg"
+    image_alt: "The Dipo logo: a depot with a different discourse structure in each bay."
+    years: "2026-"
+    summary: |
+      Dipo, the Discourse Parsing Omnibus (pronounced "depot"), is a collection of easy-to-use
+      discourse parsers with pretrained models. It starts with Rhetorical Structure Theory and is
+      built to take on other discourse frameworks.
+    links:
+      - label: "Code"
+        url: "https://github.com/larc-iu/dipo"

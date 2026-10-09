@@ -49,7 +49,7 @@
                     {%- if project.links %}<a href="{{ project.links[0].url }}">{% endif -%}
                     <img src="{{ SITEURL }}/{{ project.image }}"
                          alt="{{ project.image_alt|default(project.name, true) }}"
-                         class="project-image">
+                         class="project-image"{% if project.image_width %} style="width: {{ project.image_width }}px"{% endif %}>
                     {%- if project.links %}</a>{% endif -%}
                 </div>
                 {% endif %}
